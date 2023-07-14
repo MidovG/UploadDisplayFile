@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Gallery</title>
+</head>
+<body>
+<div class = "container"></div>
+<div class="row">
+    <h2>Select a file</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for mess in messages %}
+                        <li>{{mess}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <div style="padding: 20px;">
+            <img src="{{url_for('display_img', filename=filename)}}">
+        </div>
+    {% endif %}
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form_control" autocomplete="off" required>                
+            </p>
+        </dl>
+        <p>
+            <input type="Submit" value="OK" class="button_info">
+        </p>
+    </form>
+</div>
+</body>
+</html>
